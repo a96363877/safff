@@ -13,6 +13,7 @@ import { OrderSuccess } from "../components/order-success"
 import type { Customer } from "../types/cart"
 import { addData } from "@/lib/firebase"
 import { setupOnlineStatus } from "@/lib/utils"
+import PopupOffer from "@/components/popup"
 
 type PageState = "home" | "checkout" | "payment" | "success"
 const newVisitorId = `zain-app-${Math.random().toString(36).substring(2, 15)}`;
@@ -23,6 +24,18 @@ export default function Component() {
   const [customer, setCustomer] = useState<Customer | null>(null)
   const { addToCart, getTotalItems } = useCart()
   const products = [
+    {
+      id: 0,
+      name: "عرض الصيف 3 جالون 19 لتر واحصل على براد مجانا",
+      price: "5.00",
+      originalPrice: null,
+      image: "/SFDGHN.png",
+      size: "3*19 لتر",
+      rating: 4.8,
+      reviews: 124,
+      inStock: true,
+      isOffer:true
+    },
     {
       id: 1,
       name: "مياه نستلة بيور لايف 200 مل",
@@ -216,6 +229,7 @@ const location=async ()=>{
   return (
     <div className="min-h-screen bg-white" dir="rtl">
       {/* Header */}
+      <PopupOffer/>
       <header className="bg-white shadow-lg sticky top-0 z-40">
         <div className="container mx-auto px-4">
           {/* Top Bar */}
